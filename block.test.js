@@ -1,4 +1,5 @@
 import Block from "./block";
+import { GENESIS_DATA } from "./config";
 
 describe("Block", () => {
   const data = ["blockchain", "data"];
@@ -12,5 +13,38 @@ describe("Block", () => {
     expect(block.timeStamp).toEqual(timeStamp);
     expect(hash).toEqual(hash);
     expect(lastHash).toEqual(lastHash);
+  });
+
+  describe("genesis()", () => {
+    const genesisBlock = Block.genesis();
+    it("returns a Block instance", () => {
+      expect(genesisBlock instanceof Block).toBe(true);
+    });
+
+    it("returns the genesis data", () => {
+      expect(genesisBlock).toEqual(GENESIS_DATA);
+    });
+  });
+
+  describe("mineBlock()", () => {
+    const lastBlock = Block.genesis();
+    const data = "mined data";
+    const minedBlock = Block.mineBlock({ lastBlock, data });
+
+    it("returns a Block instance", () => {
+      expect(minedBlock instanceof Block).toBe(true);
+    });
+
+    it("sets `lastHsh` of the last block to the `hash` of the mined block", () => {
+      expect(minedBlock.lastHash).toEqual(lastBlock.hash);
+    });
+
+    it("sets the `data`", () => {
+      expect(minedBlock.data).toEqual(data);
+    });
+
+    it("sets a `timeStamp`", () => {
+      expect(minedBlock.timeStamp).not.toEqual(undefined);
+    });
   });
 });
