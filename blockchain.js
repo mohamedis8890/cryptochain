@@ -7,7 +7,10 @@ export default class Blockchain {
 
   addBlock({ data }) {
     this.chain.push(
-      Block.mineBlock({ lastBlock: this.chain[this.chain.length - 1], data })
+      Block.mineBlock({
+        lastBlock: this.chain[this.chain.length - 1],
+        data
+      })
     );
   }
 
@@ -16,9 +19,8 @@ export default class Blockchain {
       return false;
 
     for (let i = 1; i < chain.length; i++) {
-      const block = chain[i];
       const actualLastHash = chain[i - 1].hash;
-      const { timeStamp, lastHash, hash, data } = block;
+      const { timeStamp, lastHash, hash, data } = chain[i];
       if (lastHash !== actualLastHash) return false;
 
       const validBlockHash = cryptoHash(timeStamp, lastHash, data);
@@ -27,5 +29,20 @@ export default class Blockchain {
     }
 
     return true;
+  }
+
+  replaceChain(chain) {
+    if (chain.length <= this.chain.length) {
+      console.error("new chain must be longer");
+      return;
+    }
+
+    if (!Blockchain.isValidChain(chain)) {
+      console.error("new chain must be valid");
+      return;
+    }
+
+    console.log("replaced chain :", chain);
+    this.chain = chain;
   }
 }
