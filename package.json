@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "testwork": "babel-node avarage-work.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.7.5",
-    "jest": "^24.9.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0"
+  },
+  "dependencies": {
+    "hex-to-binary": "^1.0.1"
   }
 }

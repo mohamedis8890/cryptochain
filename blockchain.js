@@ -15,6 +15,7 @@ export default class Blockchain {
   }
 
   static isValidChain(chain) {
+    console.log(chain);
     if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))
       return false;
 

@@ -3,5 +3,15 @@
     "test": {
       "plugins": ["@babel/plugin-transform-modules-commonjs"]
     }
-  }
+  },
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ]
 }
