@@ -15,13 +15,13 @@ export default class Blockchain {
   }
 
   static isValidChain(chain) {
-    console.log(chain);
     if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))
       return false;
 
     for (let i = 1; i < chain.length; i++) {
       const actualLastHash = chain[i - 1].hash;
       const { timeStamp, lastHash, hash, data, nonce, difficulty } = chain[i];
+      const lastDifficulty = chain[i - 1].difficulty;
       if (lastHash !== actualLastHash) return false;
 
       const validBlockHash = cryptoHash(
@@ -33,6 +33,8 @@ export default class Blockchain {
       );
 
       if (hash !== validBlockHash) return false;
+
+      if (Math.abs(lastDifficulty - difficulty) > 1) return false;
     }
 
     return true;
