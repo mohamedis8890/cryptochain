@@ -1,3 +1,4 @@
+export const MINE_RATE = 1000;
 const INIT_DIFFICULTY = 3;
 
 export const GENESIS_DATA = {
