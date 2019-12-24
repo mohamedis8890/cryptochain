@@ -1,5 +1,6 @@
 import Block from "./block";
 import { GENESIS_DATA } from "./config";
+import cryptoHash from "./crypto-hash";
 
 describe("Block", () => {
   const data = ["blockchain", "data"];
@@ -45,6 +46,12 @@ describe("Block", () => {
 
     it("sets a `timeStamp`", () => {
       expect(minedBlock.timeStamp).not.toEqual(undefined);
+    });
+
+    it("sets a sha256-crypted `hash` on the mined block based on proper inputs", () => {
+      expect(minedBlock.hash).toEqual(
+        cryptoHash(lastBlock.hash, data, minedBlock.timeStamp)
+      );
     });
   });
 });
