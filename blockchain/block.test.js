@@ -1,7 +1,7 @@
 import hexToBinary from "hex-to-binary";
 import Block from "./block";
-import { GENESIS_DATA, MINE_RATE } from "./config";
-import cryptoHash from "./crypto-hash";
+import { GENESIS_DATA, MINE_RATE } from "../config";
+import cryptoHash from "../util/crypto-hash";
 
 describe("Block", () => {
   const data = ["blockchain", "data"];

@@ -50,6 +50,3 @@ export default class PubSub {
     });
   }
 }
-
-// const testPubSub = new PubSub();
-// setTimeout(() => testPubSub.publisher.publish(CHANNELS.TEST, "foo"), 1000);

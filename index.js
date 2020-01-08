@@ -2,7 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import request from "request";
 
-import PubSub from "./pubsub";
+import PubSub from "./app/pubsub";
 import Blockchain from "./blockchain";
 
 const DEFAULT_PORT = 3000;
